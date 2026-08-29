@@ -178,31 +178,172 @@ export const INITIAL_MUSIC: MusicTrack[] = [
 
 export const MOCK_MUSIC = INITIAL_MUSIC;
 
-export const STOCK_VIDEOS_PREVIEW = [
+export interface StockFootageItem {
+  id: string;
+  title: string;
+  titleEn: string;
+  category: 'tech' | 'city' | 'luxury' | 'space' | 'nature' | 'mystery';
+  thumbnail: string;
+  previewUrl: string;
+  tags: string[];
+}
+
+export const STOCK_VIDEOS_PREVIEW: StockFootageItem[] = [
+  // Tech & AI
   {
     id: 'stock-1',
     title: 'تكنولوجيا وشاشات مستقبلية 4K',
-    thumbnail: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&auto=format&fit=crop&q=80',
-    previewUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&auto=format&fit=crop&q=80',
+    titleEn: 'Futuristic AI & Neural Screens',
+    category: 'tech',
+    thumbnail: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80',
+    tags: ['تكنولوجيا', 'ذكاء اصطناعي', 'شاشات', 'tech', 'ai', 'cyber'],
   },
+  {
+    id: 'stock-tech-2',
+    title: 'برمجة سريعة وشيفرات سيبرانية',
+    titleEn: 'Cyber Code & Fast Data Flow',
+    category: 'tech',
+    thumbnail: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80',
+    tags: ['برمجة', 'كود', 'بيانات', 'هاكر', 'code', 'matrix', 'data'],
+  },
+  {
+    id: 'stock-tech-3',
+    title: 'روبوت وذكاء اصطناعي فائق',
+    titleEn: 'Humanoid Robot & Super Intelligence',
+    category: 'tech',
+    thumbnail: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80',
+    tags: ['روبوت', 'ذكاء اصطناعي', 'مستقبل', 'robot', 'future', 'ai'],
+  },
+
+  // City & Cyberpunk
   {
     id: 'stock-2',
     title: 'مدينة نيويورك ليلية وسينمائية',
-    thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80',
-    previewUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80',
+    titleEn: 'New York Skyline Night Cinematics',
+    category: 'city',
+    thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80',
+    tags: ['مدينة', 'نيويورك', 'أضواء', 'ليل', 'city', 'night', 'skyline'],
   },
+  {
+    id: 'stock-city-2',
+    title: 'طوكيو نيون وسايبربانك مستقبلي',
+    titleEn: 'Tokyo Cyberpunk Neon Street',
+    category: 'city',
+    thumbnail: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80',
+    tags: ['طوكيو', 'نيون', 'سايبربانك', 'شوارع', 'tokyo', 'neon', 'cyberpunk'],
+  },
+  {
+    id: 'stock-city-3',
+    title: 'ناطحات سحاب وضباب سينمائي',
+    titleEn: 'Moody Foggy Skyscrapers',
+    category: 'city',
+    thumbnail: 'https://images.unsplash.com/photo-1477959858617-67f30bc75b82?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1477959858617-67f30bc75b82?w=600&auto=format&fit=crop&q=80',
+    tags: ['ناطحات سحاب', 'ضباب', 'معمار', 'drone', 'fog', 'skyscrapers'],
+  },
+
+  // Luxury & Wealth
   {
     id: 'stock-3',
     title: 'ساعات وثروة وتداول واستثمار',
-    thumbnail: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500&auto=format&fit=crop&q=80',
-    previewUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500&auto=format&fit=crop&q=80',
+    titleEn: 'Luxury Watches & Wealth Investment',
+    category: 'luxury',
+    thumbnail: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=80',
+    tags: ['ثروة', 'استثمار', 'ساعة', 'رجال أعمال', 'wealth', 'luxury', 'finance'],
   },
   {
+    id: 'stock-lux-2',
+    title: 'شاشات البورصة ومؤشرات التداول الأخضر',
+    titleEn: 'Stock Exchange Bull Market Charts',
+    category: 'luxury',
+    thumbnail: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80',
+    tags: ['تداول', 'كريبتو', 'أسهم', 'ربح', 'crypto', 'stocks', 'trading'],
+  },
+  {
+    id: 'stock-lux-3',
+    title: 'سيارات رياضية فاخرة وسرعة',
+    titleEn: 'Supercars & Midnight Speed',
+    category: 'luxury',
+    thumbnail: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&auto=format&fit=crop&q=80',
+    tags: ['سيارة', 'سرعة', 'فخامة', 'supercar', 'porsche', 'speed'],
+  },
+
+  // Space & Cosmos
+  {
     id: 'stock-4',
-    title: 'مجرات وفضاء عميق مذهل',
-    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=80',
-    previewUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=80',
-  }
+    title: 'مجرات وفضاء عميق وسدم مذهلة',
+    titleEn: 'Deep Space Nebula & Galaxies',
+    category: 'space',
+    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80',
+    tags: ['فضاء', 'كواكب', 'نجوم', 'مجرة', 'space', 'galaxy', 'universe'],
+  },
+  {
+    id: 'stock-space-2',
+    title: 'كوكب الأرض من المدار الفضائي',
+    titleEn: 'Planet Earth Orbit Cinematic',
+    category: 'space',
+    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=600&auto=format&fit=crop&q=80',
+    tags: ['الأرض', 'فضاء', 'مدار', 'earth', 'orbit', 'nasa'],
+  },
+  {
+    id: 'stock-space-3',
+    title: 'شفق قطبي وسماء ليلية ساحرة',
+    titleEn: 'Aurora Borealis Northern Lights',
+    category: 'space',
+    thumbnail: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&auto=format&fit=crop&q=80',
+    tags: ['شفق قطبي', 'أورورا', 'سماء', 'aurora', 'northern lights', 'stars'],
+  },
+
+  // Nature & Dramatic Landscapes
+  {
+    id: 'stock-nature-1',
+    title: 'جبال شاهقة وضباب درامي',
+    titleEn: 'Majestic Misty Mountain Peaks',
+    category: 'nature',
+    thumbnail: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&auto=format&fit=crop&q=80',
+    tags: ['جبال', 'طبيعة', 'سحاب', 'mountains', 'nature', 'peaks'],
+  },
+  {
+    id: 'stock-nature-2',
+    title: 'أمواج محيط هادرة وسينمائية',
+    titleEn: 'Raging Deep Ocean Waves',
+    category: 'nature',
+    thumbnail: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=600&auto=format&fit=crop&q=80',
+    tags: ['محيط', 'بحر', 'أمواج', 'ocean', 'sea', 'waves'],
+  },
+
+  // Mystery & Psychology
+  {
+    id: 'stock-mystery-1',
+    title: 'ممر غامض وإضاءة درامية داكنة',
+    titleEn: 'Dramatic Dark Atmospheric Hallway',
+    category: 'mystery',
+    thumbnail: 'https://images.unsplash.com/photo-1509114397022-ed747cca3f65?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1509114397022-ed747cca3f65?w=600&auto=format&fit=crop&q=80',
+    tags: ['غموض', 'رعب', 'ظلام', 'دراما', 'mystery', 'dark', 'cinematic'],
+  },
+  {
+    id: 'stock-mystery-2',
+    title: 'تركيز وتأمل في بيئة مظلمة',
+    titleEn: 'Deep Focus & Stoic Mindset',
+    category: 'mystery',
+    thumbnail: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=80',
+    previewUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=80',
+    tags: ['تأمل', 'تطوير ذات', 'تركيز', 'mindset', 'stoic', 'focus'],
+  },
 ];
 
 export const INITIAL_IDEAS: IdeaItem[] = [

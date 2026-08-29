@@ -42,14 +42,62 @@ export default function App() {
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // App Data State
-  const [user, setUser] = useState<UserProfile>(INITIAL_USER);
-  const [projects, setProjects] = useState<VideoProject[]>(INITIAL_PROJECTS);
-  const [scheduledPosts, setScheduledPosts] = useState<ScheduledPost[]>(INITIAL_SCHEDULED_POSTS);
+  // App Data State with Local Storage Persistence
+  const [user, setUser] = useState<UserProfile>(() => {
+    try {
+      const saved = localStorage.getItem('faceless_user');
+      if (saved) {
+        return { ...INITIAL_USER, ...JSON.parse(saved) };
+      }
+    } catch {}
+    return INITIAL_USER;
+  });
+
+  const [projects, setProjects] = useState<VideoProject[]>(() => {
+    try {
+      const saved = localStorage.getItem('faceless_projects');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch {}
+    return INITIAL_PROJECTS;
+  });
+
+  const [scheduledPosts, setScheduledPosts] = useState<ScheduledPost[]>(() => {
+    try {
+      const saved = localStorage.getItem('faceless_scheduled_posts');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch {}
+    return INITIAL_SCHEDULED_POSTS;
+  });
+
+  // Automatically persist user, projects, and scheduled posts to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('faceless_user', JSON.stringify(user));
+    } catch {}
+  }, [user]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('faceless_projects', JSON.stringify(projects));
+    } catch {}
+  }, [projects]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('faceless_scheduled_posts', JSON.stringify(scheduledPosts));
+    } catch {}
+  }, [scheduledPosts]);
 
   // Cross-tab data sharing
   const [selectedIdeaForScript, setSelectedIdeaForScript] = useState<IdeaCard | null>(null);
   const [selectedScriptForVideo, setSelectedScriptForVideo] = useState<ScriptResult | null>(null);
+  const [selectedProjectForVideo, setSelectedProjectForVideo] = useState<VideoProject | null>(null);
 
   // Keep document RTL/LTR updated
   useEffect(() => {
@@ -240,6 +288,10 @@ export default function App() {
                       setGeneratorTab(tab);
                     }}
                     onOpenProject={(proj) => {
+                      setSelectedProjectForVideo(proj);
+                      if (proj.script) {
+                        setSelectedScriptForVideo(proj.script);
+                      }
                       setCurrentView('generator');
                       setGeneratorTab('video');
                     }}
@@ -320,6 +372,7 @@ export default function App() {
                       <VideoCreatorView
                         lang={lang}
                         initialScript={selectedScriptForVideo}
+                        initialProject={selectedProjectForVideo}
                         onVideoCreated={handleVideoCreated}
                       />
                     )}

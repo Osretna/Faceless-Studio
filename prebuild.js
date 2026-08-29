@@ -54,12 +54,10 @@ export function repairStructure(baseDir = process.cwd()) {
     console.log('[repairStructure] Directory structure successfully reconstructed.');
   }
 
-  // 2. Ensure main.tsx exists in both root and src so any index.html variant resolves
-  if (fs.existsSync(path.resolve(srcDir, 'main.tsx')) && !fs.existsSync(path.resolve(root, 'main.tsx'))) {
-    try {
-      fs.copyFileSync(path.resolve(srcDir, 'main.tsx'), path.resolve(root, 'main.tsx'));
-    } catch (_) {}
-  }
+  // 2. Ensure main.tsx exists in root that safely re-exports/imports src/main.tsx
+  try {
+    fs.writeFileSync(path.resolve(root, 'main.tsx'), `import './src/main.tsx';\n`);
+  } catch (_) {}
 
   // 3. Remove bun.lock if present to prevent any package manager conflicts
   const bunLock = path.resolve(root, 'bun.lock');

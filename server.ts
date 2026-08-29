@@ -33,8 +33,8 @@ async function generateGeminiContentWithRetry(
   systemInstruction?: string
 ): Promise<string> {
   const candidateModels = [
-    'gemini-3.7-flash',
     'gemini-3.1-flash-lite',
+    'gemini-3.7-flash',
     'gemini-flash-latest',
   ];
   let lastError: any = null;
@@ -62,16 +62,19 @@ async function generateGeminiContentWithRetry(
       }
     } catch (err: any) {
       lastError = err;
-      const errMsg = err?.message || String(err);
+      const errMsg = (err?.message || String(err)).toLowerCase();
       const isUnavailable =
         errMsg.includes('503') ||
-        errMsg.includes('UNAVAILABLE') ||
+        errMsg.includes('unavailable') ||
         errMsg.includes('high demand') ||
         errMsg.includes('429') ||
-        errMsg.includes('timed out');
+        errMsg.includes('timed out') ||
+        errMsg.includes('resource_exhausted') ||
+        errMsg.includes('quota') ||
+        errMsg.includes('exceeded');
 
       if (isUnavailable && i < candidateModels.length - 1) {
-        console.log(`[Gemini] Model ${model} unavailable or timed out. Retrying with ${candidateModels[i + 1]}...`);
+        console.log(`[Gemini] Model ${model} unavailable or quota reached. Retrying with ${candidateModels[i + 1]}...`);
         await new Promise((resolve) => setTimeout(resolve, 500));
         continue;
       }
