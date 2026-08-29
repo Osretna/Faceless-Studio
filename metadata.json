@@ -1,0 +1,6 @@
+{
+  "name": "Faceless Studio",
+  "description": "منصة أتمتة المحتوى والذكاء الاصطناعي لإنشاء وإدارة قنوات Faceless المتكاملة",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
